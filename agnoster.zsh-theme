@@ -150,7 +150,7 @@ prompt_virtualenv() {
   fi
 
   if [[ -n $env ]]; then
-    prompt_segment green black
+    prompt_segment cyan black
     print -Pn " $(basename $env) "
   fi
 }
