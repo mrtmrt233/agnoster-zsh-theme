@@ -134,11 +134,24 @@ prompt_status() {
 }
 
 # Display current virtual environment
+#add conda support
 prompt_virtualenv() {
+  local env='';
+
   if [[ -n $VIRTUAL_ENV ]]; then
-    color=cyan
-    prompt_segment $color $PRIMARY_FG
-    print -Pn " $(basename $VIRTUAL_ENV) "
+    env=$VIRTUAL_ENV
+  fi
+
+  #remove defalt conda env display:
+  # open ~/.condarc
+  # add "changeps1: False"
+  if [[ -n $CONDA_DEFAULT_ENV ]]; then
+    env=$CONDA_DEFAULT_ENV
+  fi
+
+  if [[ -n $env ]]; then
+    prompt_segment green black
+    print -Pn " $(basename $env) "
   fi
 }
 
